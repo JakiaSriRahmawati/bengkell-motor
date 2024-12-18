@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\kelolaMekanik;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class KelolaMekanikController extends Controller
 {
@@ -42,9 +43,10 @@ class KelolaMekanikController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(kelolaMekanik $kelolaMekanik)
+    public function edit($id)
     {
-        //
+        $kelolaMekanik = kelolaMekanik::findOrFail($id); 
+        return view('admin.kelolaMekanik.edit', compact('kelolaMekanik'));
     }
 
     /**
@@ -52,7 +54,32 @@ class KelolaMekanikController extends Controller
      */
     public function update(Request $request, kelolaMekanik $kelolaMekanik)
     {
-        //
+        $request->validate([
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'nama' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:kelola_kasirs,email,' . $kelolaMekanik->id,
+            'no_handphone' => 'required|numeric|min:10',
+        ]);
+
+        if ($request->hasFile('image')) {
+            if ($kelolaMekanik->image) {
+                Storage::delete('public/' . $kelolaMekanik->image);
+            }
+
+            $imagePath = $request->file('image')->store('kasir_images', 'public');
+        } else {
+            $imagePath = $kelolaMekanik->image;
+        }
+
+        $kelolaMekanik->update([
+            'image' => $imagePath,
+            'nama' => $request->nama,
+            'email' => $request->email,
+            'no_handphone' => $request->no_handphone,
+        ]);
+
+        return redirect()->route('kelolaMekanik.index')->with('success', 'Data kasir berhasil diperbarui');
+
     }
 
     /**

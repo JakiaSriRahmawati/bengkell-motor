@@ -62,5 +62,5 @@ Route::get('/laporan', [OwnerController::class, 'index'])->name('laporan');
 Route::get('/kelolaUser', [KelolaUserController::class, 'index'])->name('kelolaUser');
 Route::get('/kelolaKasir', [KelolaKasirController::class, 'index'])->name('kelolaKasir');
 Route::get('/kelolaMekanik', [KelolaMekanikController::class, 'index'])->name('kelolaMekanik');
-Route::POST('/booking', [BookingController::class, 'store'])->name('booking');
+Route::post('/booking', [BookingController::class, 'store'])->name('booking');
 Route::get('/kelolaBooking', [BookingController::class, 'index'])->name('kelolaBooking');

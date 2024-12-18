@@ -49,9 +49,11 @@
                 <td class="p-2">jakia@example.com</td>
                 <td class="p-2">089887672367</td>
                 <td class="p-2">
-                  <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">
-                    Edit
-                  </button>
+                  {{-- <a href="{{ route('admin.edit', $kelolaKasir->id) }}"> --}}
+                    <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">
+                        Edit
+                    </button>
+                  {{-- </a>                 --}}
                   <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">
                     Hapus
                   </button>

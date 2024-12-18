@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class kelolaKasir extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'image', 'nama', 'email', 'no_handphone',
+    ];
 }

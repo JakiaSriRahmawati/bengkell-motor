@@ -53,7 +53,7 @@
                 <p class="text-gray-600 group-hover:text-white transition-colors duration-300">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Quaerat, autem!   
                 </p>
-                <button class="mt-4 bg-gradient-to-r from-blue-400 to-blue-600 text-white py-2 px-4 rounded hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-800 shadow-lg hover:shadow-blue-500/50 transition-transform duration-300 hover:scale-105">
+                <button  onclick="window.location.href='{{ route('layanan') }}'" class="mt-4 bg-gradient-to-r from-blue-400 to-blue-600 text-white py-2 px-4 rounded hover:bg-gradient-to-r hover:from-blue-600 hover:to-blue-800 shadow-lg hover:shadow-blue-500/50 transition-transform duration-300 hover:scale-105">
                     Lihat Selengkapnya
                 </button>
             </div>
@@ -72,7 +72,7 @@
             </span>
             @endfor
         </div>
-        <img src="{{ Storage::url('images/depan/kar.png') }}" class="w-80" alt="Gambar Galeri">
+        <img src="{{ Storage::url('images/mekanik/enam.png') }}" class="w-80" alt="Gambar Galeri">
         <div class="px-3 py-4 bg-gray-300 w-80 text-center rounded-lg shadow-md">
             <h4 class="text-xl mb-2 mt-6 font-semibold text-gray-800">Why us ?</h4>
             <p class="text-3xl font-great-vibes" style="font-family: 'Great Vibes', cursive;">

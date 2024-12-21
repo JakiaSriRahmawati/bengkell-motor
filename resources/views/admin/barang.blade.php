@@ -12,6 +12,7 @@
       <div class="p-4 font-bold text-2xl text-center border-b border-gray-700">Admin Dashboard</div>
       <nav class="mt-6">
         <a href="homeAdmin" class="block px-4 py-2 hover:bg-gray-700">Dashboard</a>
+        <a href="index" class="block px-4 py-2 hover:bg-gray-700">Home</a> 
         <a href="kelolaUser" class="block px-4 py-2 hover:bg-gray-700">Kelola User</a>
         <a href="kelolaKasir" class="block px-4 py-2 hover:bg-gray-700">Kelola Kasir</a>
         <a href="kelolaMekanik" class="block px-4 py-2 hover:bg-gray-700">Kelola Mekanik</a>
@@ -23,6 +24,11 @@
 
     <div class="flex-1 p-6">
       <h1 class="text-3xl font-semibold mb-6">Kelola Barang</h1>
+      <a href="{{ route('admin.store') }}">
+        <button class="bg-lime-500 text-white px-3 py-1 rounded hover:bg-lime-800-600 transition">
+          Tambah Barang
+        </button>
+      </a>
       <div class="bg-white p-4 rounded shadow">
         <table class="w-full border">
             <thead>
@@ -37,74 +43,30 @@
               </tr>
             </thead>
             <tbody>
-
+              @foreach($barangs as $barang)
                 <tr>
-                <td class="p-2 border">1</td>
-                <td class="p-2 border">
-                  <img 
-                    src="{{ Storage::url('images/barang/oli.png') }}" 
-                    class="w-20 h-20 object-cover rounded" 
-                    alt="Oli Mesin"
-                  />
-                </td>
-                <td class="p-2 border">Oli Mesin</td>
-                <td class="p-2 border">Oli kualitas tinggi untuk mesin motor</td>
-                <td class="p-2 border">Rp. 80.000</td>
-                <td class="p-2 border">5</td>
-                <td class="p-2 border">
-                  <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">
-                    Edit
-                  </button>
-                  <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">
-                    Hapus
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="p-2 border">2</td>
-                <td class="p-2 border">
-                  <img 
-                    src="{{ Storage::url('images/barang/ban.png') }}" 
-                    class="w-20 h-20 object-cover rounded" 
-                    alt="Ban Motor"/>
-                </td>
-                <td class="p-2 border">Ban Motor</td>
-                <td class="p-2 border">Ban motor tubeless untuk segala jenis medan</td>
-                <td class="p-2 border">Rp. 350.000</td>
-                <td class="p-2 border">5</td>
-                <td class="p-2 border">
-                  <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">
-                    Edit
-                  </button>
-                  <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">
-                    Hapus
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td class="p-2 border">3</td>
-                <td class="p-2 border">
-                  <img 
-                    src="{{ Storage::url('images/barang/aki.png') }}" 
-                    class="w-20 h-20 object-cover rounded" 
-                    alt="Aki Motor"
-                  />
-                </td>
-                <td class="p-2 border">Aki Motor</td>
-                <td class="p-2 border">Aki berkualitas untuk motor matic</td>
-                <td class="p-2 border">Rp. 250.000</td>
-                <td class="p-2 border">5</td>
-                <td class="p-2 border">
-                  <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">
-                    Edit
-                  </button>
-                  <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">
-                    Hapus
-                  </button>
-                </td>
-              </tr>
+                  <td class="p-2 border">{{ $barang->id }}</td>
+                  <td class="p-2 border">
+                    <img 
+                      src="{{ Storage::url('images/barang/' . $barang->gambar) }}" 
+                      class="w-20 h-20 object-cover rounded" 
+                      alt="{{ $barang->nama_barang }}"
+                    />
+                  </td>
+                  <td class="p-2 border">{{ $barang->nama_barang }}</td>
+                  <td class="p-2 border">{{ $barang->deskripsi }}</td>
+                  <td class="p-2 border">Rp. {{ number_format($barang->harga, 0, ',', '.') }}</td>
+                  <td class="p-2 border">{{ $barang->stok }}</td>
+                  <td class="p-2 border">
+                    <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">
+                      Edit
+                    </button>
+                    <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">
+                      Hapus
+                    </button>
+                  </td>
+                </tr>
+              @endforeach
             </tbody>
           </table>     
       </div>

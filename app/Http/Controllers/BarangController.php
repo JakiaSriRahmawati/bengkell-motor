@@ -12,7 +12,8 @@ class BarangController extends Controller
      */
     public function index()
     {
-        return view('admin.barang');
+        $barangs = Barang::all();  
+        return view('admin.barang', compact('barangs'));   
     }
 
     /**
@@ -20,36 +21,42 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tambahbarang');
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'nama_barang' => 'required|string|max:255',
-            'deskripsi' => 'required|string|max:1000',
-            'harga' => 'required|numeric|min:0',
-            'stok' => 'required|integer|min:0',
-            'kategori' => 'required|string|max:100',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+{
+    // Validasi input
+    $request->validate([
+        'nama_barang' => 'required|string|max:255',
+        'deskripsi' => 'required|string|max:1000',
+        'harga' => 'required|numeric|min:0',
+        'stok' => 'required|integer|min:0',
+        'kategori' => 'required|string|max:100',
+        'gambar' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', 
+    ]);
 
+    if ($request->hasFile('gambar')) {
         $gambarPath = $request->file('gambar')->store('images/barang', 'public');
+    }
 
-        Barang::create([
-            'nama_barang' => $request->nama_barang,
-            'deskripsi' => $request->deskripsi,
-            'harga' => $request->harga,
-            'stok' => $request->stok,
-            'kategori' => $request->kategori,
-            'gambar' => $gambarPath,
-        ]);
+    // Menyimpan data barang ke database
+    Barang::create([
+        'nama_barang' => $request->nama_barang,
+        'deskripsi' => $request->deskripsi,
+        'harga' => $request->harga,
+        'stok' => $request->stok,
+        'kategori' => $request->kategori,
+        'gambar' => $gambarPath,
+    ]);
 
-        return redirect()->route('barang.create')->with('success', 'Barang berhasil ditambahkan.');
-    } 
+    // Redirect setelah sukses
+    return redirect()->route('barang.create')->with('success', 'Barang berhasil ditambahkan.');
+}
+
 
     /**
      * Display the specified resource.

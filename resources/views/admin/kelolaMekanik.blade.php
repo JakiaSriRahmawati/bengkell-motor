@@ -12,6 +12,7 @@
       <div class="p-4 font-bold text-2xl text-center border-b border-gray-700">Admin Dashboard</div>
       <nav class="mt-6">
         <a href="homeAdmin" class="block px-4 py-2 hover:bg-gray-700">Dashboard</a>
+        <a href="index" class="block px-4 py-2 hover:bg-gray-700">Home</a>
         <a href="kelolaUser" class="block px-4 py-2 hover:bg-gray-700">Kelola User</a>
         <a href="kelolaKasir" class="block px-4 py-2 hover:bg-gray-700">Kelola Kasir</a>
         <a href="#" class="block px-4 py-2 hover:bg-gray-700">Kelola Mekanik</a>
@@ -23,42 +24,46 @@
 
     <div class="flex-1 p-6">
       <h1 class="text-3xl font-semibold mb-6">Kelola Mekanik</h1>
+      <a href="{{ route('admin.store') }}">
+        <button class="bg-lime-500 text-white px-3 py-1 rounded hover:bg-lime-800-600 transition">
+          Tambah Mekanik
+        </button>
+      </a>
       <div class="bg-white p-4 rounded shadow">
         <table class="w-full">
-            <thead>
-              <tr class="bg-gray-200">
+          <thead>
+            <tr class="bg-gray-200">
                 <th class="p-2 text-left">ID</th>
                 <th class="p-2 text-left">Image</th>
                 <th class="p-2 text-left">Nama</th>
                 <th class="p-2 text-left">Email</th>
-                <th class="p-2 text-left">No Handpone</th>
+                <th class="p-2 text-left">No Handphone</th>
                 <th class="p-2 text-left">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="p-2">1</td>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach ($mekaniks as $mekanik)
+            <tr>
+                <td class="p-2">{{ $mekanik->id }}</td>
                 <td class="p-2">
-                  <img 
-                    src="{{ Storage::url('images/contac/galerri.png') }}" 
-                    class="w-20 h-11 object-cover rounded" 
-                    alt="User Image"
-                  />
+                    <img src="{{ Storage::url('images/contac/' . $mekanik->image) }}" class="w-20 h-11 object-cover rounded" alt="User Image" />
                 </td>
-                <td class="p-2">Jakia Sri</td>
-                <td class="p-2">jakia@example.com</td>
-                <td class="p-2">089887672367</td>
+                <td class="p-2">{{ $mekanik->nama }}</td>
+                <td class="p-2">{{ $mekanik->email }}</td>
+                <td class="p-2">{{ $mekanik->no_hp }}</td>
                 <td class="p-2">
-                  <button class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition">
-                    Edit
-                  </button>
-                  <button class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">
-                    Hapus
-                  </button>
+                    <form action="{{ route('mekanik.destroy', $mekanik->id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Are you sure?')">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition">
+                            Hapus
+                        </button>
+                    </form>
                 </td>
-              </tr>
-            </tbody>
-          </table>     
+            </tr>
+            @endforeach
+          </tbody>
+        </table>
       </div>
     </div>
   </div>

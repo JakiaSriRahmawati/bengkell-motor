@@ -5,7 +5,9 @@
     <div>
         <label for="image">Image</label>
         <input type="file" name="image" id="image" />
-        <img src="{{ asset('storage/'.$kelolaKasir->image) }}" alt="Kasir Image" width="100" />
+        @if($kelolaKasir->image)
+            <img src="{{ asset('storage/' . $kelolaKasir->image) }}" alt="Kasir Image" width="100" />
+        @endif
     </div>
 
     <div>

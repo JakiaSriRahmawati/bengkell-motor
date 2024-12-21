@@ -47,7 +47,7 @@
         <a href="{{ route('artikel')}}" class="hover:text-red-800">Artikel</a>
         <a href="{{ route('layanan')}}" class="hover:text-red-800">Service</a>
         <a href="{{ route('login')}}" class="hover:text-red-800">Login</a>
-        <a href="#" class="hover:text-red-800">Profil</a>
+        {{-- <a href="{{ route('profile') }}" class="hover:text-red-800">Profil</a> --}}
         {{-- <a href="{{ route('dashboard')}}" class="hover:text-red-800">Admin</a> --}}
         <a href="{{ route('homeAdmin')}}" class="hover:text-red-800">Mimin</a>
       </div>
@@ -127,9 +127,13 @@
 </script>
 
 <script>
-  document.getElementById("booking-button").addEventListener("click", function () {
-      alert("Silakan register terlebih dahulu, lalu login untuk melanjutkan booking.\nKlik OK untuk menuju halaman pendaftaran.");
-      window.location.href = "/register"; 
+  // Mengatur pengalihan halaman setelah data berhasil disubmit
+  document.getElementById('booking-form').addEventListener('submit', function (event) {
+      event.preventDefault(); // Mencegah pengiriman formulir secara langsung
+      alert("Silakan Klik OK untuk menuju halaman profil dan detail pemesanan.");
+      
+      // Mengirimkan formulir secara manual setelah alert
+      this.submit();
   });
 </script>
 

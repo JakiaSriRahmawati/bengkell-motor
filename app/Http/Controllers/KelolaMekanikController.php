@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\kelolaMekanik;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class KelolaMekanikController extends Controller
@@ -11,9 +13,10 @@ class KelolaMekanikController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('admin.kelolaMekanik');
+        $mekaniks = User::where('role', 'mekanik')->get();
+        return view('admin.kelolaMekanik', compact('mekaniks'));
     }
 
     /**
@@ -23,6 +26,32 @@ class KelolaMekanikController extends Controller
     {
         //
     }
+    public function postTambahMekanik(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'role' => 'required',
+            'no_handphone' => 'required',
+            'image' => 'required',
+            'alamat' => 'required'
+        ]);
+
+        $user = new User();
+        $user->nama = $request->nama;
+        $user->email = $request->email;
+        $user->password = bcrypt('default_password');
+        $user->alamat = $request->alamat;
+        $user->no_handphone = $request->no_handphone;
+        $user->image = $request->image->store('images');
+        $user->role = 'Mekanik';
+        $user->save();
+
+
+        return redirect()->route('kelolaMekanik')->with('success', 'Mekanik berhasil ditambahkan');
+    }
+
 
     /**
      * Store a newly created resource in storage.
@@ -45,8 +74,8 @@ class KelolaMekanikController extends Controller
      */
     public function edit($id)
     {
-        $kelolaMekanik = kelolaMekanik::findOrFail($id); 
-        return view('admin.kelolaMekanik.edit', compact('kelolaMekanik'));
+        $mekanik = User::find($id);
+        return view('admin.editPengguna', compact('mekanik'));
     }
 
     /**
@@ -85,8 +114,10 @@ class KelolaMekanikController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(kelolaMekanik $kelolaMekanik)
+    public function destroy($id)
     {
-        //
+        $mekanik = User::find($id);
+        $mekanik->delete();
+        return redirect()->route('admin.kelolaMekanik')->with('success', 'Mekanik deleted successfully');
     }
 }

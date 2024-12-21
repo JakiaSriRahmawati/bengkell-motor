@@ -9,7 +9,7 @@
             </h3>
             <p class="absolute w-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-0 text-white font-normal text-2xl text-center mt-10">
                 Nikmati service yang lebih nyaman dengan fasilitas Booking Service. Dengan daftar fasilitas ini, anda tak perlu antri lama untuk mendapatkan pelayanan. Karena waktu anda begitu berharga<br>
-                <button class="mt-10 bg-gradient-to-r from-amber-500 to-blue-500 text-white text-xl font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out">
+                <button onclick="window.location.href='{{ route('booking.create') }}'" class="mt-10 bg-gradient-to-r from-amber-500 to-blue-500 text-white text-xl font-semibold py-3 px-6 rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out">
                     Booking Service
                 </button>
             </p>
@@ -66,7 +66,7 @@
             Kami sangat menghargai waktu anda dan memberikan prioritas kepada pelanggan yang telah melakukan booking service online.
         </p>
     
-        <button onclick="window.location.href='{{ route('booking') }}'" class="bg-gradient-to-r from-black to-red-500 text-white text-xl font-semibold py-3 px-6 rounded-full shadow-lg mt-6 hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out">
+        <button onclick="window.location.href='{{ route('booking.create') }}'" class="bg-gradient-to-r from-black to-red-500 text-white text-xl font-semibold py-3 px-6 rounded-full shadow-lg mt-6 hover:shadow-xl hover:scale-105 transition-all duration-300 ease-in-out">
             Booking Service
         </button>
     </div>

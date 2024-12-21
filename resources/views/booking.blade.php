@@ -16,8 +16,9 @@
 <div class="min-h-screen flex items-center justify-center p-8">
     <div class="bg-gradient-to-r from-red-600 via-yellow-700 to-red-600 shadow-2xl rounded-xl p-10 w-full max-w-2xl">
         <h2 class="text-4xl font-bold text-red-950 text-center mb-8">Form Booking Service</h2>
-        
-        <form action="{{ route('booking')}}" method="POST" class="space-y-8">
+
+        <form action="{{ route('booking.store')}}" method="POST" class="space-y-8">
+            @csrf
             <div class="flex flex-col">
                 <label for="full_name" class="text-lg font-medium">Nama Lengkap</label>
                 <input type="text" id="full_name" name="full_name" placeholder="Masukkan nama lengkap Anda"
@@ -89,7 +90,7 @@
                     class="mt-2 px-5 py-3 rounded-lg border-2 border-gray-200 focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-transparent transition-all duration-200"></textarea>
             </div>
             <div class="text-center">
-                <button type="button" id="booking-button"
+                <button type="submit"
                     class="w-full px-6 py-4 bg-red-950 text-white font-bold text-xl rounded-lg shadow-lg hover:bg-red-700 focus:ring-2 focus:ring-red-500 transition-all duration-300">
                     Booking Sekarang
                 </button>

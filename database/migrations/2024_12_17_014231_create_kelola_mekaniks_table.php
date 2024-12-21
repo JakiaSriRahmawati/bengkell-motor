@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('image');
             $table->string('nama');
+            $table->string('alamat');
             $table->string('email')->unique();
             $table->integer('no_handphone');
             $table->timestamps();

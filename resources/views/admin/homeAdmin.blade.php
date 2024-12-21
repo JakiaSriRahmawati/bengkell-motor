@@ -13,6 +13,7 @@
       <nav class="mt-6">
         <a href="#" class="block px-4 py-2 hover:bg-gray-700">Dashboard</a>
         <a href="index" class="block px-4 py-2 hover:bg-gray-700">Home</a>
+        <a href="profile" class="block px-4 py-2 hover:bg-gray-700">Profile</a>
         <a href="kelolaUser" class="block px-4 py-2 hover:bg-gray-700">Kelola User</a>
         <a href="kelolaKasir" class="block px-4 py-2 hover:bg-gray-700">Kelola Kasir</a>
         <a href="kelolaMekanik" class="block px-4 py-2 hover:bg-gray-700">Kelola Mekanik</a>

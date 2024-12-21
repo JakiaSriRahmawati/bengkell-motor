@@ -2,21 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Register;
+use App\Models\detailTransaksi;
 use Illuminate\Http\Request;
 
-class RegisterController extends Controller
+class DetailTransaksiController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('register');
-    }
-    public function login()
-    {
-        return view('login');
+        $dp = detailTransaksi::all();
+        $dp = detailTransaksi::with(['User', 'barang'])->get();
+        // $dp = transaksi::with(['pesan'])->get();
+
+        return view('admin.detailTransaksi', compact('dp'));
     }
 
     /**
@@ -38,7 +38,7 @@ class RegisterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Register $register)
+    public function show(detailTransaksi $detailTransaksi)
     {
         //
     }
@@ -46,7 +46,7 @@ class RegisterController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Register $register)
+    public function edit(detailTransaksi $detailTransaksi)
     {
         //
     }
@@ -54,7 +54,7 @@ class RegisterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Register $register)
+    public function update(Request $request, detailTransaksi $detailTransaksi)
     {
         //
     }
@@ -62,7 +62,7 @@ class RegisterController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Register $register)
+    public function destroy(detailTransaksi $detailTransaksi)
     {
         //
     }

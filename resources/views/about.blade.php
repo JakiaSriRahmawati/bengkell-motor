@@ -10,11 +10,11 @@
     @yield('styles')
 </head>
 <body>
-    <img src="{{ is_array($data['images']) ? $data['images'][0] : $data['images'] }}" class="w-full" alt="Image">
+    <img src="{{ Storage::url('images/contac/galerri.png') }}" class="w-full " alt="Image">
 <div class="container mx-auto px-4">
 <h3 class="font-bold text-5xl text-red-950 text-center">Automaster Bengkel</h3>
-    <div class="container flex flex-row mt-14">
-        <img src="{{ is_array($data['images']) ? $data['images'][0] : $data['images'] }}" class="w-3/5" alt="Image">
+    <div class="container flex flex-row mt-14 gap-10">
+        <img src="{{ Storage::url('images/contac/galerri.png') }}" class="w-3/5" alt="Image">
         <div class="flex flex-col w-2/5 text-xl">
             <ul class="gap-10">
                 <li>
@@ -29,14 +29,14 @@
             </ul>
         </div>
     </div>
-    <p class="text-xl">
+    <p class="text-xl my-6">
         Kami siap melayani anda dengan sepenuh hati!… semua keluhan anda akan berusaha kami selesaikan dengan baik karena 
         AutomasterBengkel merupakan Bengkel yang Berkualitas dan telah teruji dengan berbagai macam penghargaan.
     </p>
     <div class="w-full h-1 bg-gray-400 shadow-sm rounded-sm my-4"></div> 
     <div class="container mx-auto px-4 w-full">
-        <div class="flex flex-row">
-            <img src="{{ is_array($data['images']) ? $data['images'][0] : $data['images'] }}" class="w-1/2" alt="Image">
+        <div class="flex flex-row gap-10">
+            <img src="{{ Storage::url('images/contac/galerri.png') }}" class="w-1/2" alt="Image">
             <div class="flex flex-col w-1/2">
                 <h1 class="text-4xl text-red-950 font-bold">SEJARAH</h1>
                 <span class="text-3xl text-red-950 font-semibold">Automaster Bengkel</span>

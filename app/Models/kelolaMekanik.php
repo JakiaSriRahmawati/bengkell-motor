@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class kelolaMekanik extends Model
 {
     use HasFactory;
+    protected $table = 'kelola_mekaniks';
+
     protected $fillable = [
-        'image', 'nama', 'email', 'no_handphone',
+        'image', 'nama', 'alamat', 'password', 'email', 'no_handphone',
     ];
 }

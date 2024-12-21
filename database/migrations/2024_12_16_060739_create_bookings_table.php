@@ -9,17 +9,22 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('bookings', function (Blueprint $table) {
-            $table->id(); 
-            $table->string('nama_lengkap'); 
-            $table->string('email');
-            $table->string('nomor_telepon');
-            $table->json('jenis_layanan'); // Jenis Layanan (disimpan dalam bentuk JSON)
-            $table->date('tanggal_service'); 
-            $table->text('catatan_tambahan')->nullable(); 
-            $table->timestamps(); 
+            $table->id();
+            $table->foreignId('user_id')->constrained();
+            $table->string('merek_motor');
+            $table->string('mesin_motor');
+            $table->string('seri_motor');
+            $table->string('no_plat');
+            $table->string('jenis_service');
+            $table->string('deskripsi');
+            $table->date('tgl_service');
+            $table->enum('status_orderan', ['belum diterima', 'diterima'])->default('belum diterima');
+            $table->enum('status_pembayaran', ['belum dibayar', 'Sedang dikonfirmasi', 'lunas', 'dibatalkan'])->default('belum dibayar');
+            $table->enum('status_service', ['belum dikerjakan', 'dikerjakan', 'Selesai'])->default('belum dikerjakan');
+            $table->timestamps();
         });
     }
     /**

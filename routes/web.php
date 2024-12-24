@@ -22,6 +22,7 @@ use App\Models\Layanan;
 use App\Models\Owner;
 use App\Models\Pengguna;
 use App\Models\Profil;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +38,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+Route::get('/homeAdmin/{locale}', function ($locale) {
+    App::setLocale($locale);
+    return view('admin.homeAdmin');
 });
 
 Route::get('/dashboard', function () {
